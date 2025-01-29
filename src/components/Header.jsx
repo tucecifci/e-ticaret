@@ -1,9 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { CiShoppingCart } from "react-icons/ci";
 import { MdOutlineWbSunny } from "react-icons/md";
 import { IoMdMoon } from "react-icons/io";
 
 function Header() {
+  const [theme, setTheme] = useState(false);
+
+  useEffect(() => {
+    const root = document.getElementById("root");
+    if (theme) {
+      root.style.backgroundColor = "black";
+      root.style.color = "#fff";
+    } else {
+      root.style.backgroundColor = "#fff";
+      root.style.color = "black";
+    }
+  }, [theme]);
+
+  const changeTheme = () =>{
+    setTheme(prevTheme => !prevTheme);
+  }
+  // const changeTheme = () =>{
+  //     const root = document.getElementById("root");
+  //     if(theme){
+  //         root.style.backgroundColor = "black";
+  //         root.style.color = "#fff";
+  //     }else{
+  //         root.style.backgroundColor = "#fff";
+  //         root.style.color = "black";
+  //     }
+  //     setTheme(!theme);
+  // }
   return (
     <div className="flex items-center justify-between mt-40">
       {/* Logo ve Başlık */}
@@ -24,8 +51,17 @@ function Header() {
 
       {/* Güneş ve Ay İkonları */}
       <div className="flex items-center space-x-4">
-        <MdOutlineWbSunny className="text-xl text-gray-500 cursor-pointer" />
-        <IoMdMoon className="text-xl text-gray-500 cursor-pointer" />
+        {theme ? (
+          <MdOutlineWbSunny
+            onClick={changeTheme}
+            className="text-xl text-gray-500 cursor-pointer"
+          />
+        ) : (
+          <IoMdMoon
+            className="text-xl text-gray-500 cursor-pointer"
+            onClick={changeTheme}
+          />
+        )}
       </div>
     </div>
   );
