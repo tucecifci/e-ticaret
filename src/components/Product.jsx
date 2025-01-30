@@ -11,7 +11,7 @@ function Product({ product }) {
           <h3 className="font-bold">{price} TL </h3>
         </div>
         <div className="flex justify-center">
-            <button className="bg-gray-200 !px-8 !py-2 !mt-4 rounded-md cursor-pointer hover:font-bold ">Detay</button>
+            <button className="bg-gray-200 !px-8 !py-2 !mt-4 rounded-md cursor-pointer hover:font-bold ">Detail Page</button>
         </div>
       </div>
   );
