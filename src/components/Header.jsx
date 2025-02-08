@@ -2,9 +2,12 @@ import React, { useEffect, useState } from "react";
 import { CiShoppingCart } from "react-icons/ci";
 import { MdOutlineWbSunny } from "react-icons/md";
 import { IoMdMoon } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
 
 function Header() {
   const [theme, setTheme] = useState(false);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const root = document.getElementById("root");
@@ -24,7 +27,7 @@ function Header() {
   return (
     <div className="flex items-center justify-between !mt-10">
       {/* Logo ve Başlık */}
-      <div className="flex items-center">
+      <div className="flex items-center cursor-pointer" onClick={()=> navigate("/")}>
         <img className="w-12" src="/src/assets/bird-logo.png" alt="logo" />
         <h1 className="font-black ml-2">Pick&Pay</h1>
       </div>
