@@ -22,7 +22,7 @@ function Header() {
   }
  
   return (
-    <div className="flex items-center justify-between mt-40">
+    <div className="flex items-center justify-between !mt-10">
       {/* Logo ve Başlık */}
       <div className="flex items-center">
         <img className="w-12" src="/src/assets/bird-logo.png" alt="logo" />
