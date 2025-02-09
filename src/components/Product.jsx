@@ -10,10 +10,10 @@ function Product({ product }) {
         <img src={image} alt="img" className="w-[180px] h-[240px]" />
         <div className="ml-4">
           <p className="truncate ">{title}</p>
-          <h3 className="font-bold">{price} TL </h3>
+          <h3 className="font-bold">{price} $ </h3>
         </div>
         <div className="flex justify-center">
-            <button onClick={() => navigate("./product-details/" + id)} className="bg-gray-200 !px-8 !py-2 !mt-4 rounded-md cursor-pointer hover:font-bold">Detail Page</button>
+            <button onClick={() => navigate("./product-details/" + id)} className="bg-gray-200 !px-8 !py-2 !mt-4 rounded-md cursor-pointer hover:font-bold">More Detail</button>
         </div>
       </div>
   );

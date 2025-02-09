@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { CiShoppingCart } from "react-icons/ci";
-import { MdOutlineWbSunny } from "react-icons/md";
-import { IoMdMoon } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import Badge from "@mui/material/Badge";
 import { useSelector } from "react-redux"; // Redux verisini okumak için import
+import SearchIcon from '@mui/icons-material/Search';
 
 function Header() {
   const [theme, setTheme] = useState(false);
@@ -14,33 +13,34 @@ function Header() {
   const cartItems = useSelector((state) => state.cart.cartItems);
   const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
-  useEffect(() => {
-    const root = document.getElementById("root");
-    if (theme) {
-      root.style.backgroundColor = "black";
-      root.style.color = "#fff";
-    } else {
-      root.style.backgroundColor = "#fff";
-      root.style.color = "black";
-    }
-  }, [theme]);
+  // useEffect(() => {
+  //   const root = document.getElementById("root");
+  //   if (theme) {
+  //     root.style.backgroundColor = "black";
+  //     root.style.color = "#fff";
+  //   } else {
+  //     root.style.backgroundColor = "#fff";
+  //     root.style.color = "black";
+  //   }
+  // }, [theme]);
 
-  const changeTheme = () => {
-    setTheme((prevTheme) => !prevTheme);
-  };
+  // const changeTheme = () => {
+  //   setTheme((prevTheme) => !prevTheme);
+  // };
 
   return (
-    <div className="flex items-center justify-between !mt-10">
+    <div className="flex items-center justify-between ">
       {/* Logo ve Başlık */}
-      <div
-        className="flex items-center cursor-pointer"
+      <div 
+        className="flex items-center cursor-pointer !mt-10"
         onClick={() => navigate("/")}
       >
         <img className="w-12" src="/src/assets/bird-logo.png" alt="logo" />
-        <h1 className="font-black ml-2">Pick&Pay</h1>
+        <h1 className="font-black ml-2">Shopo</h1>
       </div>
 
       <div className="flex items-center border-b-2 border-gray-400">
+      <SearchIcon className="text-gray-400 !mr-1" />
         <input
           type="text"
           placeholder="search"
@@ -58,7 +58,7 @@ function Header() {
         )}
       </div>
 
-      <div className="flex items-center space-x-4">
+      {/* <div className="flex items-center space-x-4">
         {theme ? (
           <MdOutlineWbSunny
             onClick={changeTheme}
@@ -70,7 +70,7 @@ function Header() {
             onClick={changeTheme}
           />
         )}
-      </div>
+      </div> */}
     </div>
   );
 }
