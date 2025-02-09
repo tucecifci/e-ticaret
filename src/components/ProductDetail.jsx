@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { setSelectedProduct, getAllProducts } from "../redux/ProductSlice";
 import { CiHeart } from "react-icons/ci";
 import { CiShop } from "react-icons/ci";
+import { addToCart } from "../redux/chartSlice";
 
 function ProductDetail() {
   const { id } = useParams();
@@ -31,6 +32,11 @@ function ProductDetail() {
   }
 
   const { price, image, title, description } = selectedProduct;
+
+  const handleAddToChart= () =>{
+    dispatch(addToCart(selectedProduct));
+  }
+
 
   return (
     <div className="flex flex-col md:flex-row md:items-start justify-center gap-4 min-h-screen !mt-20 px-4 !overflow-hidden">
@@ -69,7 +75,7 @@ function ProductDetail() {
         <hr className="!mt-4 !mb-4 text-gray-200" />
 
         <div className="flex flex-row gap-1 !py-2">
-          <button className="bg-black text-white font-semibold text-md !py-2 w-4/5  hover:bg-gray-800 transition-all cursor-pointer">
+          <button onClick={handleAddToChart} className="bg-black text-white font-semibold text-md !py-2 w-4/5 cursor-pointer">
             Sepete Ekle
           </button>
           <button className="bg-black  flex text-2xl text-center justify-center items-center text-white w-1/5  hover:bg-gray-800 transition-all cursor-pointer">
