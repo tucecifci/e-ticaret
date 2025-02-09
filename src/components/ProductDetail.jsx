@@ -6,10 +6,15 @@ import { CiHeart } from "react-icons/ci";
 import { CiShop } from "react-icons/ci";
 import { addToCart } from "../redux/chartSlice";
 
+import {toast} from 'react-toastify';
+
+
 function ProductDetail() {
   const { id } = useParams();
   const { products, selectedProduct } = useSelector((store) => store.products);
   const dispatch = useDispatch();
+
+
 
   useEffect(() => {
     // Ürünleri yükle
@@ -35,6 +40,7 @@ function ProductDetail() {
 
   const handleAddToChart= () =>{
     dispatch(addToCart(selectedProduct));
+    toast.success(`${selectedProduct.title} sepete eklendi`)
   }
 
 
