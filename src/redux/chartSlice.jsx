@@ -15,7 +15,9 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action) => {
-      const existingItem = state.cartItems.find((item) => item.id === action.payload.id);
+      const existingItem = state.cartItems.find(
+        (item) => item.id === action.payload.id
+      );
       if (existingItem) {
         existingItem.quantity += 1; // Eğer ürün varsa miktarı artır
       } else {
@@ -23,26 +25,37 @@ const cartSlice = createSlice({
       }
       localStorage.setItem("cart", JSON.stringify(state.cartItems)); // Güncellenmiş sepeti kaydet
     },
-    incrementQuantity: (state, action) =>{
-        const product = state.cartItems.find((item) => item.id === action.payload);
-        if(product){
-            product.quantity+=1;
-            localStorage.setItem("cart", JSON.stringify(state.cartItems)) //güncellenmiş sepeti kaydet
-        }
+    incrementQuantity: (state, action) => {
+      const product = state.cartItems.find(
+        (item) => item.id === action.payload
+      );
+      if (product) {
+        product.quantity += 1;
+        localStorage.setItem("cart", JSON.stringify(state.cartItems)); //güncellenmiş sepeti kaydet
+      }
     },
-    decrementQuantity:(state, action)=>{
-        const product = state.cartItems.find((item) => item.id === action.payload);
-        if(product){
-            if(product.quantity >1){
-                product.quantity-=1; //eğer miktar 1'den büyükse 1 azalt
-            } else{
-                state.cartItems = state.cartItems.filter((item) => item.id !== action.payload)
-            }
-            localStorage.setItem("cart", JSON.stringify(state.cartItems))
+    decrementQuantity: (state, action) => {
+      const product = state.cartItems.find(
+        (item) => item.id === action.payload
+      );
+      if (product) {
+        if (product.quantity > 1) {
+          product.quantity -= 1; //eğer miktar 1'den büyükse 1 azalt
+        } else {
+          state.cartItems = state.cartItems.filter(
+            (item) => item.id !== action.payload
+          );
         }
-    }
+        localStorage.setItem("cart", JSON.stringify(state.cartItems));
+      }
+    },
+    clearChart: (state) => {
+      state.cartItems = []; //reduxtaki ürün listesini sıfırla
+      localStorage.removeItem("cart");
+    },
   },
 });
 
-export const { addToCart, decrementQuantity, incrementQuantity } = cartSlice.actions;
+export const { addToCart, decrementQuantity, incrementQuantity, clearChart } =
+  cartSlice.actions;
 export default cartSlice.reducer;

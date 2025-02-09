@@ -1,17 +1,24 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { decrementQuantity, incrementQuantity } from "../redux/chartSlice";
+import { clearChart, decrementQuantity, incrementQuantity } from "../redux/chartSlice";
+import { useNavigate } from "react-router-dom";
 
 
 function CardPage() {
   const cartItems = useSelector((state) => state.cart.cartItems);
-  // console.log(cartItems);
   const dispatch = useDispatch();
+  const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
+  const navigate = useNavigate();
+
 
   const totalPrice = cartItems.reduce(
     (acc, item) => acc + item.price * item.quantity,
     0
   );
+  const handleOrder=()=>{
+   dispatch(clearChart());
+   navigate("/order-complete");
+  }
 
   return (
     <div className="flex flex-col flex-wrap !mt-4 !overflow-hidden">
@@ -48,7 +55,7 @@ function CardPage() {
           <p className="font-bold">{totalPrice.toFixed(2)} TL</p>
         </div>
 
-        <button
+        <button onClick={handleOrder} 
           className="bg-black !mt-4 w-72  text-white font-semibold text-md !py-2  cursor-pointer"
         >
           SİPARİŞİ TAMAMLA
